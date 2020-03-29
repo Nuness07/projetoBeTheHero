@@ -5,13 +5,14 @@ module.exports = {
         const { page = 1 } = request.query;
 
         //Colchetes em volta  faz com que retorne apenas um resultado
-        const [count] = await connection('incidents')
-            .count();//Contar quantos estão cadastrados na tabela
+        const [count] = await connection('incidents').count();//Contar quantos estão cadastrados na tabela
 
         const incidents = await connection('incidents')
             .join('ongs', 'ong_id', '=', 'incidents.ong_id')
             .limit(5)//Limitar a apenas 5 registros por vez
             .offset((page - 1) * 5)//Vai listar 5 acada pagina
+
+
             .select([
                 'incidents.*',
                 'ongs.nome',
