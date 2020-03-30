@@ -1,11 +1,13 @@
 const express = require('express');//Express é um pacote
 const cors = require('cors');
 const routes = require('./routes');//Como routes é um arquivo usamos o ./
+const { errors } = require('celebrate')
 const app = express();
 
 app.use(cors());
 app.use(express.json())//Indicar que estou recebendo JSON
 app.use(routes);
+app.use(errors());
 
 /*
   1-Rotas: O conjunto completo -> http://localhost:3333/users
@@ -47,5 +49,9 @@ app.use(routes);
    */
 
 
-app.listen(3333);//A porta que iremos usar no browser para acessar a aplicação
+module.exports = app;
+
+
+
+//A porta que iremos usar no browser para acessar a aplicação
 //Porque não usar a porta 8080? Pq ela pode dar problemas em alguns SOs

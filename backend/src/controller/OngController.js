@@ -1,3 +1,4 @@
+const generateUniqueId = require ('../utils/generateUniqueId');
 const crypto = require('crypto');//Um pacote do node que consegue gerar números aleatórios
 const connection = require('../database/connection');//Importando o arquivo da conexão com o banco
 
@@ -14,7 +15,7 @@ module.exports = {
         const { nome, email, whatsapp, city, uf } = request.body;
 
         //Gerando Id aleatório usando o pacote do node crypto
-        const id = crypto.randomBytes(4).toString('HEX');
+        const id = generateUniqueId();
 
         //Inserindo dados da ong
         /**
